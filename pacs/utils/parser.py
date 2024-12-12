@@ -825,7 +825,7 @@ class Parser:
 
         # version
         if args.version is True:
-            print("pacs", __version__)
+            print("pacs_ta", __version__)
             exit(0)
 
         # run, input file
