@@ -1,0 +1,35 @@
+## basic
+max_cycle = 200                                     # Maximum number of cycles to run. (ex. 1, ..., 123, ..., 999)
+n_replica = 100                                     # Number of replica. (ex. 1, ..., 123, ..., 999)
+n_parallel = 10                                     # Number of replica which are calculated at a time
+centering = true                                    # Whether to move the molecule to the center
+centering_selection = "Protein"                     # Name of molecule to move in the center
+working_dir = "./."                                 # Directory where pacsmd will run
+
+## simulator
+simulator = "gromacs"                                # Software used inside PaCS-MD
+cmd_mpi = "mpirun -np 640 -mca coll_hcoll_enable 0" # Commands for MPI such as mpirun, blank is OK
+cmd_serial = "gmx_mpi mdrun -ntomp 1"               # Commands to run the software serially
+cmd_parallel = "gmx_mpi mdrun -ntomp 1"             # Commands to run the software parallelly
+structure = "./input.gro"                           # Structural file such as gro, pdb, rst7, etc.
+topology = "./topol.top"                            # Topology file such as top, parm7, psf, etc.
+mdconf = "./pacsmd.mdp"                             # Parameter file such as mdp, mdin, namd, etc.
+index_file = "./index.ndx"                          # Gromacs index file
+trajectory_extension = ".trr"                       # Trajectory file extension. ("." is necessary)
+
+## analyzer
+type = "target_association"                         # Evaluation function
+reference = "ref.gro"
+threshold = 0.1                                     # CV threshold used to decide whether to terminate the calculation (in units of nm)
+skip_frame = 1                                      # How many frames to skip when ranking CVs
+analyzer = "gromacs"                                # Trajectory tool used to calculate the evaluation function
+selection1 = "Protein_Ligand"                       # Selection string for specified group in trajectroies (least squares fit)
+selection2 = "Protein_Ligand"                       # Selection string for specified group in trajectories (RMSD calculation)
+pruning_threshold = 0.01                            # Threshold for pruning
+pruning_cycle_interval = 5                          # Cycle interval for pruning
+
+## postprocess
+rmmol = true                                        # Whether rmmol is executed after each cycle
+keep_selection = 'keep_grp'                         # Molecular name or index group to be left in the trajectory when rmmol
+rmfile = true                                       # Whether rmfile is executed after trial
+

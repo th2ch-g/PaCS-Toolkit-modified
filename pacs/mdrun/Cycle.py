@@ -171,3 +171,6 @@ class Cycle:
         return self.cycle == self.settings.max_cycle or self.analyzer.is_threshold(
             self.settings, self.results
         )
+
+    def is_pruning(self) -> bool:
+        return self.analyzer.is_pruning(self.settings, self.cycle, self.results)

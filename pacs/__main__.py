@@ -8,6 +8,7 @@ from .mdrun.analyzer.ee import EdgeExpansion
 from .mdrun.analyzer.rmsd import RMSD
 from .mdrun.analyzer.superAnalyzer import SuperAnalyzer
 from .mdrun.analyzer.target import Target
+from .mdrun.analyzer.target_association import TargetAssociation
 from .mdrun.analyzer.template import Template
 from .mdrun.Cycle import Cycle
 from .mdrun.exporter.amber import eAmber
@@ -47,6 +48,7 @@ def prepare_md(
         "ee": EdgeExpansion(),
         "a_d": A_D(),
         "template": Template(),
+        "target_association": TargetAssociation(),
     }.get(settings.type)
 
     exporter: SuperExporter = {
@@ -72,13 +74,15 @@ def pacs_md(
         LOGGER.info(f"cycle{cycle_cnt:03} starts")
         cycle.run()
         LOGGER.info(f"cycle{cycle_cnt:03} done")
+        if cycle.is_pruning():
+            LOGGER.info("pruning!!")
+            break
         if cycle.is_finished():
             if cycle_cnt == settings.max_cycle:
                 LOGGER.info("max cycle reached!")
             else:
                 LOGGER.info("cv reached threshold!")
             break
-
 
 def main():
     LOGGER.info("PaCS-MD starts")

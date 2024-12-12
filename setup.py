@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent
 exec((BASE_DIR / "pacs/_version.py").read_text())
 
 setup(
-    name="pacs",
+    name="pacs_ta",
     version=__version__,  # type: ignore[name-defined]  # NOQA: F821
     packages=find_packages(),
     description=(
@@ -63,7 +63,7 @@ setup(
     package_data={},
     entry_points={
         "console_scripts": [
-            "pacs=pacs.__main__:main",
+            "pacs_ta=pacs.__main__:main",
         ]
     },
 )
