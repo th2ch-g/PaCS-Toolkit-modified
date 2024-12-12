@@ -3,7 +3,7 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 BASE_DIR = Path(__file__).resolve().parent
-exec((BASE_DIR / "pacs/_version.py").read_text())
+exec((BASE_DIR / "pacs_ta/_version.py").read_text())
 
 setup(
     name="pacs_ta",
@@ -63,7 +63,7 @@ setup(
     package_data={},
     entry_points={
         "console_scripts": [
-            "pacs_ta=pacs.__main__:main",
+            "pacs_ta=pacs_ta.__main__:main",
         ]
     },
 )
