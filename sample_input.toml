@@ -7,7 +7,7 @@ centering_selection = "Protein"                     # Name of molecule to move i
 working_dir = "./."                                 # Directory where pacsmd will run
 
 ## simulator
-simulator = "gromacs"                                # Software used inside PaCS-MD
+simulator = "gromacs"                               # Software used inside PaCS-MD
 cmd_mpi = "mpirun -np 640 -mca coll_hcoll_enable 0" # Commands for MPI such as mpirun, blank is OK
 cmd_serial = "gmx_mpi mdrun -ntomp 1"               # Commands to run the software serially
 cmd_parallel = "gmx_mpi mdrun -ntomp 1"             # Commands to run the software parallelly
@@ -23,7 +23,7 @@ reference = "ref.gro"
 threshold = 0.1                                     # CV threshold used to decide whether to terminate the calculation (in units of nm)
 skip_frame = 1                                      # How many frames to skip when ranking CVs
 analyzer = "gromacs"                                # Trajectory tool used to calculate the evaluation function
-selection1 = "Protein_Ligand"                       # Selection string for specified group in trajectroies (least squares fit)
+selection1 = "Protein"                              # Selection string for specified group in trajectroies (least squares fit)
 selection2 = "Protein_Ligand"                       # Selection string for specified group in trajectories (RMSD calculation)
 pruning_threshold = 0.01                            # Threshold for pruning
 pruning_cycle_interval = 5                          # Cycle interval for pruning
