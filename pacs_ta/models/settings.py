@@ -205,6 +205,7 @@ class MDsettings:
             "rmsd",
             "ee",
             "a_d",
+            "target_association",
             "template",
         ]:
             LOGGER.error(f"{self.type} is not supported")
