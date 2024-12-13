@@ -30,7 +30,7 @@ class TargetAssociation(SuperAnalyzer):
     def is_pruning(self, settings: MDsettings, cycle:int, CVs: List[Snapshot] = None) -> bool:
         # load cycle[i-5] result
         pruning_cycle_interval = settings.pruning_cycle_interval
-        with open(f"{settings.work_dir}/{settings.each_cycle(_cycle=cycle-pruning_cycle_interval)}/summary/cv_ranked.log", "r") as f:
+        with open(f"{settings.working_dir}/{settings.each_cycle(_cycle=cycle-pruning_cycle_interval)}/summary/cv_ranked.log", "r") as f:
             bestCV_before = float(f.readline().strip().split(" ")[5])
 
         best_CV_current = self.CVs[0]
