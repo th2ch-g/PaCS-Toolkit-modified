@@ -36,7 +36,6 @@ class Cycle:
         self.simulator = simulator
         self.analyzer = analyzer
         self.exporter = exporter
-        self.results = None
 
     def run(self) -> None:
         if not self.is_needed():
@@ -174,7 +173,4 @@ class Cycle:
         )
 
     def is_pruning(self) -> bool:
-        if self.results is None:
-            return False
-        else:
-            return self.analyzer.is_pruning(self.settings, self.cycle, self.results)
+        return self.analyzer.is_pruning(self.settings, self.cycle)

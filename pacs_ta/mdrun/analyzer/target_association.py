@@ -27,7 +27,7 @@ class TargetAssociation(SuperAnalyzer):
     def is_threshold(self, settings: MDsettings, CVs: List[Snapshot] = None) -> bool:
         return CVs[0].cv < settings.threshold
 
-    def is_pruning(self, settings: MDsettings, cycle:int, CVs: List[Snapshot] = None) -> bool:
+    def is_pruning(self, settings: MDsettings, cycle:int) -> bool:
         # load cycle[i-5] result
         pruning_cycle_interval = settings.pruning_cycle_interval
         if cycle - pruning_cycle_interval < 0:
@@ -35,8 +35,8 @@ class TargetAssociation(SuperAnalyzer):
         else:
             with open(f"{settings.working_dir}/{settings.each_cycle(_cycle=cycle-pruning_cycle_interval)}/summary/cv_ranked.log", "r") as f:
                 bestCV_before = float(f.readline().strip().split(" ")[5])
-
-            best_CV_current = self.CVs[0].cv
+            with open(f"{settings.working_dir}/{settings.each_cycle(_cycle=cycle)}/summary/cv_ranked.log", "r") as f:
+                bestCV_current = float(f.readline().strip().split(" ")[5])
             return abs(best_CV_current - bestCV_before) <= settings.pruning_threshold
 
     # def cal_by_mdtraj(self, settings: MDsettings, cycle: int, replica: int) -> None:
