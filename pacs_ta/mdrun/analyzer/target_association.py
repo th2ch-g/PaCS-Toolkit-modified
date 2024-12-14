@@ -36,7 +36,7 @@ class TargetAssociation(SuperAnalyzer):
             with open(f"{settings.working_dir}/{settings.each_cycle(_cycle=cycle-pruning_cycle_interval)}/summary/cv_ranked.log", "r") as f:
                 bestCV_before = float(f.readline().strip().split(" ")[5])
 
-            best_CV_current = self.CVs[0]
+            best_CV_current = self.CVs[0].cv
             return abs(best_CV_current - bestCV_before) <= settings.pruning_threshold
 
     # def cal_by_mdtraj(self, settings: MDsettings, cycle: int, replica: int) -> None:
