@@ -9,6 +9,7 @@ from .mdrun.analyzer.rmsd import RMSD
 from .mdrun.analyzer.superAnalyzer import SuperAnalyzer
 from .mdrun.analyzer.target import Target
 from .mdrun.analyzer.template import Template
+from .mdrun.analyzer.a_d_target import A_D_Target
 from .mdrun.Cycle import Cycle
 from .mdrun.exporter.amber import eAmber
 from .mdrun.exporter.gromacs import eGromacs
@@ -47,6 +48,7 @@ def prepare_md(
         "ee": EdgeExpansion(),
         "a_d": A_D(),
         "template": Template(),
+        "a_d_target": A_D_Target(),
     }.get(settings.type)
 
     exporter: SuperExporter = {
